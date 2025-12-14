@@ -1,0 +1,15 @@
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetBooksByUser`(IN uid INT)
+BEGIN
+  SELECT b.title,
+         b.author,
+         i.issue_date,
+         i.return_date,
+         i.status
+  FROM issued_books i
+  JOIN books b ON i.book_id = b.book_id
+  WHERE i.user_id = uid;
+END$$
+
+DELIMITER ;

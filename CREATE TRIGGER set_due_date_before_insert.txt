@@ -1,0 +1,13 @@
+DELIMITER $$
+
+CREATE TRIGGER set_due_date_before_insert
+BEFORE INSERT ON issued_books
+FOR EACH ROW
+BEGIN
+    -- Set due_date only if issue_date is given and due_date is not set
+    IF NEW.issue_date IS NOT NULL AND NEW.due_date IS NULL THEN
+        SET NEW.due_date = DATE_ADD(NEW.issue_date, INTERVAL 14 DAY);
+    END IF;
+END$$
+
+DELIMITER ;

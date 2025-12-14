@@ -1,0 +1,11 @@
+CREATE TABLE issued_books (
+    issue_id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT(11) DEFAULT NULL,
+    book_id INT(11) DEFAULT NULL,
+    request_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    issue_date DATE DEFAULT NULL,
+    due_date DATE DEFAULT NULL,
+    return_date DATE DEFAULT NULL,
+    status ENUM('requested','issued','returned','rejected') DEFAULT NULL,
+    PRIMARY KEY (issue_id)
+);

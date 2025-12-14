@@ -1,0 +1,12 @@
+DELIMITER $$
+
+CREATE TRIGGER prevent_negative_copies
+BEFORE UPDATE ON books
+FOR EACH ROW
+BEGIN
+    IF NEW.available_copies < 0 THEN
+        SET NEW.available_copies = 0;
+    END IF;
+END$$
+
+DELIMITER ;
